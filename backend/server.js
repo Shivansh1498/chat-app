@@ -6,10 +6,14 @@ const { initWebSocket } = require("./websocket");
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: ["http://localhost:5173", "https://chat-app-practice.netlify.app"],
+  }),
+);
 app.use(express.json());
 
-app.get("/", (req, res) => {
+app.get("/", (_, res) => {
   res.send("Websocket chat server running");
 });
 

@@ -12,7 +12,9 @@ export function useSocket(onMessage: (msg: ServerMessage) => void) {
 
   // create socket only once
   useEffect(() => {
-    const socket = new WebSocket("ws://localhost:3001");
+    const socket = new WebSocket(
+      import.meta.env.VITE_WEBSOCKET_URL || "ws://localhost:3001"
+    );
 
     socket.onopen = () => {
       console.log("Connected to websocket");
